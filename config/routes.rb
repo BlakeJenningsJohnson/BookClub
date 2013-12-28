@@ -1,12 +1,12 @@
 Bookclub::Application.routes.draw do
   resources :users
   resources :books
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions #, only: [:new, :create, :destroy]
   get "/sign-up"  => "users#new", as: :sign_up
   post "/sign-up" => "users#create", as: :create_user
 
   get "/sign-in"  => "sessions#new", as: :sign_in
-  post "/sign-in" => "sessions#create", as: :signing_in
+  post "/sign-in" => "users#show", as: :signing_in
   get "/sign-out" => "sessions#destroy", as: :sign_out
 
   # get "/sign-in"  => "sessions#new", as: :sign_in

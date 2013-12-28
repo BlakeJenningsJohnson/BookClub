@@ -1,0 +1,12 @@
+<h1><%= @current_user.username.upcase %></h1>
+
+<% if session[:user_id] == @user.id %> 
+
+  <ul id="userinfo">
+    <li> USER NAME: <%= @user.username %> </li> 
+    <li> USER EMAIL: <%= @user.email %></li>
+  </ul>
+
+<% else %>
+<p> You do not have permmission to view this page </p>
+<% end %>
