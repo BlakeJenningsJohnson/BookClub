@@ -1,11 +1,18 @@
 Bookclub::Application.routes.draw do
-  resources :users, only: [:new, :create, :destroy, :show]
+  resources :users
   resources :books
   resources :sessions, only: [:new, :create, :destroy]
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
-  root 'users#new' #temporary! change this to bookclub index
+  get "/sign-up"  => "users#new", as: :sign_up
+  post "/sign-up" => "users#create", as: :create_user
+
+  get "/sign-in"  => "sessions#new", as: :sign_in
+  post "/sign-in" => "sessions#create", as: :signing_in
+  get "/sign-out" => "sessions#destroy", as: :sign_out
+
+  # get "/sign-in"  => "sessions#new", as: :sign_in
+  # post "/sign-in" => "sessions#create", as: :signing_in
+  # get "/sign-out" => "sessions#destroy", as: :sign_out
+  # root 'welcome#index' #temporary! change this to bookclub index
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
